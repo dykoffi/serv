@@ -22,7 +22,7 @@ jobs:
       - run: npx prisma generate
       - run: npx cqx build
       - run: mkdir -p workspace
-      - run: echo "je suis edy" > test.txt
+      - run: echo "je suis edy" > workspace/test.txt
 
       - persist_to_workspace:
           root: workspace
