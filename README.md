@@ -22,7 +22,7 @@
 
 
 ### For Begining
-1. Your dev database connection is define in **.env** file
+1. Your dev database connection is define in **.env** files
 2. Define your model in **prisma/schema.prisma**
 3. Use **yarn db:start** to run your Dev BD instance
 4. Use **yarn db:update** to update API and database structure following your model in schema.prisma file
