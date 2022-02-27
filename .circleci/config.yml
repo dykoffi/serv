@@ -26,10 +26,13 @@ jobs:
           root: build
           paths:
             - .
+      - run: pwd
+      - run: ls
 
   push:
     machine: true
     steps:
+      - checkout
       - attach_workspace:
           at: ~/build
       - run: pwd
