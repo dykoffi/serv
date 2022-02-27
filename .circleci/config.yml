@@ -21,6 +21,9 @@ jobs:
           command: yarn add cqx --dev
           name: install cqx
       - run:
+          command: yarn install
+          name: install
+      - run:
           command: npx cqx build
           name: build projet
   push:
