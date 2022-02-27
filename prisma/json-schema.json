@@ -1,0 +1,144 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "Maison": {
+      "type": "object",
+      "properties": {
+        "id_": {
+          "type": "integer"
+        },
+        "local": {
+          "type": "string"
+        },
+        "state_": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/State"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "State": {
+      "type": "object",
+      "properties": {
+        "id_": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "maisons_": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Maison"
+          }
+        }
+      }
+    },
+    "Token_": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "pass": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "Log_": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "protocol": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "method": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "hostname": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "httpVersion": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "statusCode": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "userIp": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "userReferer": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "userAgent": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    }
+  },
+  "type": "object",
+  "properties": {
+    "maison": {
+      "$ref": "#/definitions/Maison"
+    },
+    "state": {
+      "$ref": "#/definitions/State"
+    },
+    "token_": {
+      "$ref": "#/definitions/Token_"
+    },
+    "log_": {
+      "$ref": "#/definitions/Log_"
+    }
+  }
+}

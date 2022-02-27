@@ -1,0 +1,186 @@
+{
+    "/State": {
+        "get": {
+            "operationId": "getStates",
+            "tags": [
+                "State"
+            ],
+            "summary": "Returns all States",
+            "responses": {
+                "200": {
+                    "description": "List of States",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/State"
+                                }
+                            }
+                        }
+                    }
+                },
+                "403": {
+                    "$ref": "#/components/responses/UnauthorizedError"
+                },
+                "500": {
+                    "$ref": "#/components/responses/InternalError"
+                }
+            }
+        },
+        "post": {
+            "operationId": "addState",
+            "tags": [
+                "State"
+            ],
+            "summary": "Add new State",
+            "requestBody": {
+                "content": {
+                    "application/x-www-form-urlencoded": {
+                        "schema": {
+                            "$ref": "#/inputs/State"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "table created",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "message": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "403": {
+                    "$ref": "#/components/responses/UnauthorizedError"
+                },
+                "500": {
+                    "$ref": "#/components/responses/InternalError"
+                }
+            }
+        }
+    },
+    "/State/{id}": {
+        "get": {
+            "operationId": "getState",
+            "tags": [
+                "State"
+            ],
+            "summary": "Returns specific State designated by id",
+            "responses": {
+                "200": {
+                    "description": "object State basic information",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/State"
+                            }
+                        }
+                    }
+                },
+                "403": {
+                    "$ref": "#/components/responses/UnauthorizedError"
+                },
+                "404": {
+                    "$ref": "#/components/responses/NotFoundError"
+                },
+                "500": {
+                    "$ref": "#/components/responses/InternalError"
+                }
+            }
+        },
+        "put": {
+            "operationId": "updateState",
+            "tags": [
+                "State"
+            ],
+            "summary": "Update State",
+            "requestBody": {
+                "content": {
+                    "application/x-www-form-urlencoded": {
+                        "schema": {
+                            "$ref": "#/inputs/State"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "object State updated successfully",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "message": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "403": {
+                    "$ref": "#/components/responses/UnauthorizedError"
+                },
+                "404": {
+                    "$ref": "#/components/responses/NotFoundError"
+                },
+                "500": {
+                    "$ref": "#/components/responses/InternalError"
+                }
+            }
+        },
+        "delete": {
+            "operationId": "deleteState",
+            "tags": [
+                "State"
+            ],
+            "summary": "Delete specific State designated by id",
+            "responses": {
+                "201": {
+                    "description": "object State deleted successfully",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "message": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "403": {
+                    "$ref": "#/components/responses/UnauthorizedError"
+                },
+                "404": {
+                    "$ref": "#/components/responses/NotFoundError"
+                },
+                "500": {
+                    "$ref": "#/components/responses/InternalError"
+                }
+            }
+        },
+        "parameters": [
+            {
+                "in": "path",
+                "name": "id",
+                "required": true,
+                "schema": {
+                    "type": "integer"
+                }
+            }
+        ]
+    }
+}

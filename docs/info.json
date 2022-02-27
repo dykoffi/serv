@@ -1,0 +1,143 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "serv",
+        "description": "test services",
+        "version": "1.3.0",
+        "contact": {
+            "email": "koffiedy@gmail.com",
+            "name": "KOFFI Edy",
+            "url": "https://www.linkedin.com/in/edy-koffi-948494192/"
+        }
+    },
+    "definitions": {
+        "Maison": {
+            "type": "object",
+            "properties": {
+                "id_": {
+                    "type": "integer"
+                },
+                "local": {
+                    "type": "string"
+                },
+                "state_": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/State"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                }
+            }
+        },
+        "State": {
+            "type": "object",
+            "properties": {
+                "id_": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "maisons_": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Maison"
+                    }
+                }
+            }
+        }
+    },
+    "inputs": {
+        "Maison": {
+            "type": "object",
+            "properties": {
+                "local": {
+                    "type": "string"
+                }
+            }
+        },
+        "State": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "additionnalsInputs": {
+        "Maison": {
+            "type": "object",
+            "properties": {}
+        },
+        "State": {
+            "type": "object",
+            "properties": {}
+        },
+        "Ordi": {
+            "type": "object",
+            "properties": {}
+        }
+    },
+    "components": {
+        "schemas": {
+            "Maison": {
+                "$ref": "#/definitions/Maison"
+            },
+            "State": {
+                "$ref": "#/definitions/State"
+            }
+        },
+        "responses": {
+            "ExampleError": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "message",
+                                "error"
+                            ],
+                            "properties": {
+                                "error": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "UnauthorizedError": {
+                "description": "UnauthorizedError",
+                "content": {
+                    "$ref": "#/components/responses/ExampleError/content"
+                }
+            },
+            "InternalError": {
+                "description": "InternalError",
+                "content": {
+                    "$ref": "#/components/responses/ExampleError/content"
+                }
+            },
+            "NotFoundError": {
+                "description": "NotFoundError",
+                "content": {
+                    "$ref": "#/components/responses/ExampleError/content"
+                }
+            }
+        },
+        "securitySchemes": {
+            "ApiKeyAuth": {
+                "type": "apiKey",
+                "in": "header",
+                "name": "x-access-token"
+            }
+        }
+    }
+}

@@ -1,0 +1,60 @@
+{
+    "name": "serv",
+    "version": "1.3.0",
+    "description": "test services",
+    "main": "./index.ts",
+    "private": false,
+    "dependencies": {
+        "@prisma/client": "3.10.0",
+        "cookie-parser": "^1.4.6",
+        "cors": "^2.8.5",
+        "cqx-secure": "^1.0.12",
+        "dotenv": "^10.0.0",
+        "express": "^4.17.2",
+        "helmet": "^4.6.0",
+        "jsonwebtoken": "^8.5.1",
+        "morgan": "^1.10.0",
+        "prom-client": "^14.0.1",
+        "swagger-ui-express": "^4.3.0"
+    },
+    "scripts": {
+        "test": "jest",
+        "start": "ts-node ./index.ts",
+        "debug": "DEBUG=* nodemon ./index.ts",
+        "db:update": "prisma migrate dev && cqx update",
+        "db:start": "docker-compose up -d serv_db_dev",
+        "compose:up": "docker-compose up -d serv serv_db_staging",
+        "docker:build": "cqx build && DOCKER_BUILDKIT=1 docker build -t dykoffi/serv . && rm -rdf build",
+        "deploy:heroku": "cqx build && heroku container:push web -a "
+    },
+    "devDependencies": {
+        "@types/express": "^4.17.13",
+        "@types/jest": "^27.4.1",
+        "@types/node": "^17.0.21",
+        "@typescript-eslint/eslint-plugin": "^5.12.1",
+        "@typescript-eslint/parser": "^5.12.1",
+        "eslint": "^8.10.0",
+        "jest": "^27.5.1",
+        "prisma": "^3.10.0",
+        "prisma-json-schema-generator": "^2.0.1",
+        "supertest": "^6.2.2",
+        "ts-loader": "^9.2.6",
+        "ts-node": "^10.5.0",
+        "typescript": "^4.5.5",
+        "webpack": "^5.69.0"
+    },
+    "author": {
+        "email": "koffiedy@gmail.com",
+        "name": "KOFFI Edy",
+        "url": "https://www.linkedin.com/in/edy-koffi-948494192/"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/author/serv.git"
+    },
+    "bugs": {
+        "url": "https://github.com/author/serv/issues"
+    },
+    "homepage": "git+https://github.com/author/serv#readme",
+    "license": "MIT"
+}

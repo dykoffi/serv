@@ -1,0 +1,41 @@
+version: "3" # optional since v1.27.0
+services:
+  serv:
+      image: dykoffi/serv:latest
+      container_name: serv
+      environment:
+        - DATABASE_URL=postgres://serv_user:7811@serv_db_staging/serv_db_staging
+      depends_on:
+        - serv_db_staging
+      ports:
+        - 53590:8888
+
+  serv_db_dev:
+    image: postgres
+    container_name: serv_db_dev
+    environment:
+      - POSTGRES_USER=serv_user
+      - POSTGRES_DB=serv_db_dev
+      - POSTGRES_PASSWORD=7811
+    ports:
+      - 23716:5432
+
+  serv_db_test:
+    image: postgres
+    container_name: serv_db_test
+    environment:
+      - POSTGRES_USER=serv_user
+      - POSTGRES_DB=serv_db_test
+      - POSTGRES_PASSWORD=7811
+    ports:
+      - 51259:5432
+
+  serv_db_staging:
+    image: postgres
+    container_name: serv_db_staging
+    environment:
+      - POSTGRES_USER=serv_user
+      - POSTGRES_DB=serv_db_staging
+      - POSTGRES_PASSWORD=7811
+    ports:
+      - 24381:5432

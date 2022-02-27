@@ -1,0 +1,186 @@
+{
+    "/Maison": {
+        "get": {
+            "operationId": "getMaisons",
+            "tags": [
+                "Maison"
+            ],
+            "summary": "Returns all Maisons",
+            "responses": {
+                "200": {
+                    "description": "List of Maisons",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/Maison"
+                                }
+                            }
+                        }
+                    }
+                },
+                "403": {
+                    "$ref": "#/components/responses/UnauthorizedError"
+                },
+                "500": {
+                    "$ref": "#/components/responses/InternalError"
+                }
+            }
+        },
+        "post": {
+            "operationId": "addMaison",
+            "tags": [
+                "Maison"
+            ],
+            "summary": "Add new Maison",
+            "requestBody": {
+                "content": {
+                    "application/x-www-form-urlencoded": {
+                        "schema": {
+                            "$ref": "#/inputs/Maison"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "table created",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "message": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "403": {
+                    "$ref": "#/components/responses/UnauthorizedError"
+                },
+                "500": {
+                    "$ref": "#/components/responses/InternalError"
+                }
+            }
+        }
+    },
+    "/Maison/{id}": {
+        "get": {
+            "operationId": "getMaison",
+            "tags": [
+                "Maison"
+            ],
+            "summary": "Returns specific Maison designated by id",
+            "responses": {
+                "200": {
+                    "description": "object Maison basic information",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Maison"
+                            }
+                        }
+                    }
+                },
+                "403": {
+                    "$ref": "#/components/responses/UnauthorizedError"
+                },
+                "404": {
+                    "$ref": "#/components/responses/NotFoundError"
+                },
+                "500": {
+                    "$ref": "#/components/responses/InternalError"
+                }
+            }
+        },
+        "put": {
+            "operationId": "updateMaison",
+            "tags": [
+                "Maison"
+            ],
+            "summary": "Update Maison",
+            "requestBody": {
+                "content": {
+                    "application/x-www-form-urlencoded": {
+                        "schema": {
+                            "$ref": "#/inputs/Maison"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "object Maison updated successfully",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "message": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "403": {
+                    "$ref": "#/components/responses/UnauthorizedError"
+                },
+                "404": {
+                    "$ref": "#/components/responses/NotFoundError"
+                },
+                "500": {
+                    "$ref": "#/components/responses/InternalError"
+                }
+            }
+        },
+        "delete": {
+            "operationId": "deleteMaison",
+            "tags": [
+                "Maison"
+            ],
+            "summary": "Delete specific Maison designated by id",
+            "responses": {
+                "201": {
+                    "description": "object Maison deleted successfully",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "message": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "403": {
+                    "$ref": "#/components/responses/UnauthorizedError"
+                },
+                "404": {
+                    "$ref": "#/components/responses/NotFoundError"
+                },
+                "500": {
+                    "$ref": "#/components/responses/InternalError"
+                }
+            }
+        },
+        "parameters": [
+            {
+                "in": "path",
+                "name": "id",
+                "required": true,
+                "schema": {
+                    "type": "integer"
+                }
+            }
+        ]
+    }
+}
