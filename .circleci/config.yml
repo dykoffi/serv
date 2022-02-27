@@ -28,7 +28,7 @@ jobs:
           name: generate prisma client
       - run:
           command: npx cqx build
-          name: build projet
+          name: build projet && pwd && ls
       - persist_to_workspace:
           root: build
           paths:
@@ -39,6 +39,7 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/build
+      - run: pwd && ls
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run: docker build -t dykoffi/serv:2.0.0 .
       - run: docker push dykoffi/serv:2.0.0
