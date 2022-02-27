@@ -21,21 +21,22 @@ jobs:
       - run: yarn install
       - run: npx prisma generate
       - run: npx cqx build
+      - run: mkdir -p workspace
+      - run: echo "je suis edy" > test.txt
 
       - persist_to_workspace:
-          root: build
+          root: workspace
           paths:
-            - .
+            - test.txt
       - run: pwd
       - run: ls
 
   push:
     machine: true
     steps:
-      - checkout
       - attach_workspace:
-          at: ~/build
-      - run: pwd
+          at: workspace
+      - run: cat test.txt
       - run: ls
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run: docker build -t dykoffi/serv:2.0.0 .
