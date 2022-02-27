@@ -30,14 +30,15 @@ jobs:
           command: npx cqx build
           name: build projet
       - persist_to_workspace:
-          root: build
+          root: ~/build
           paths:
-            - .
+            - ./build
 
   push:
     machine: true
     steps:
-      - checkout
+      - attach_workspace:
+          at: ~/build
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run: docker build -t dykoffi/serv:2.0.0 .
       - run: docker push dykoffi/serv:2.0.0
