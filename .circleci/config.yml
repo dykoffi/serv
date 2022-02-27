@@ -18,20 +18,13 @@ jobs:
           name: "Say hello"
           command: "echo Hello, World!"
       - run: ls
-  install:
-    machine:
-      image: node
-      docker_layer_caching: true
-    steps:
-      - run: yarn install
   push:
     machine: true
     steps:
       - checkout
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
-      - run: docker build -t orgname/image:tag .
+      - run: docker build -t dykoffi/serv:2.0.0 .
       - run: docker push dykoffi/serv:2.0.0
-      - run: node --version
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
