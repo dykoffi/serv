@@ -25,7 +25,9 @@ jobs:
       - persist_to_workspace:
           root: ~/project
           paths:
-            - .
+            - ./build/
+            - Dockerfile
+            - .Dockerignore
       - run: pwd
       - run: ls
 
