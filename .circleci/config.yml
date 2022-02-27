@@ -18,7 +18,7 @@ jobs:
       - node/install-packages:
           pkg-manager: yarn
       - run:
-          command: yarn install cqx --dev
+          command: yarn add cqx --dev
           name: install cqx
       - run:
           command: npx cqx build
