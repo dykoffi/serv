@@ -30,9 +30,9 @@ jobs:
           command: npx cqx build
           name: build projet
       - persist_to_workspace:
-          root: ~/build
+          root: build
           paths:
-            - ./build
+            - .
 
   push:
     machine: true
