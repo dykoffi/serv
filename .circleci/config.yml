@@ -36,8 +36,8 @@ jobs:
     steps:
       - attach_workspace:
           at: workspace
-      - run: cat test.txt
       - run: ls
+      - run: cat workspace/test.txt
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run: docker build -t dykoffi/serv:2.0.0 .
       - run: docker push dykoffi/serv:2.0.0
