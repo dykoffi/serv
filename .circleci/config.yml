@@ -24,8 +24,12 @@ jobs:
           command: yarn install
           name: install
       - run:
+          command: npx prisma generate
+          name: generate prisma client
+      - run:
           command: npx cqx build
           name: build projet
+
   push:
     machine: true
     steps:
