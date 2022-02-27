@@ -17,18 +17,11 @@ jobs:
       - checkout
       - node/install-packages:
           pkg-manager: yarn
-      - run:
-          command: yarn add cqx --dev
-          name: install cqx
-      - run:
-          command: yarn install
-          name: install
-      - run:
-          command: npx prisma generate
-          name: generate prisma client
-      - run:
-          command: npx cqx build
-          name: build projet && pwd && ls
+      - run: yarn add cqx --dev
+      - run: yarn install
+      - run: npx prisma generate
+      - run: npx cqx build
+
       - persist_to_workspace:
           root: build
           paths:
@@ -39,7 +32,8 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/build
-      - run: pwd && ls
+      - run: pwd
+      - run: ls
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run: docker build -t dykoffi/serv:2.0.0 .
       - run: docker push dykoffi/serv:2.0.0
