@@ -23,7 +23,7 @@ jobs:
       - run: npx cqx build
 
       - persist_to_workspace:
-          root: build
+          root: ~/project
           paths:
             - .
       - run: pwd
@@ -33,8 +33,7 @@ jobs:
     machine: true
     steps:
       - attach_workspace:
-          at: build
-      - run: cd build
+          at: ~/project
       - run: ls
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run: docker build -t dykoffi/serv:2.0.0 .
