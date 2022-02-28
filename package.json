@@ -18,7 +18,7 @@
         "swagger-ui-express": "^4.3.0"
     },
     "scripts": {
-        "test": "jest",
+        "test": "jest --coverage",
         "start": "ts-node ./index.ts",
         "debug": "DEBUG=* nodemon ./index.ts",
         "db:update": "prisma migrate dev && cqx update",
