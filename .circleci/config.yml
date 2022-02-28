@@ -20,9 +20,8 @@ jobs:
       - run: yarn add cqx --dev
       - run: yarn install
       - run: npx prisma generate
-      - run: docker-compose up -d serv_db_test
-      # - run: 
       - run: npx cqx build
+      - run: zip -r build.zip build
 
       - persist_to_workspace:
           root: ~/project
