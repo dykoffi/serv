@@ -10,34 +10,32 @@ jobs:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
-      - image: cimg/node:17.2.0
+      - image: dykoffi/nodecqx
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
-      - node/install-packages:
-          pkg-manager: yarn
-      - run:
-          command: yarn add cqx --dev
-          name: install cqx
-      - run:
-          command: yarn install
-          name: install
-      - run:
-          command: npx prisma generate
-          name: generate prisma client
-      - run:
-          command: npx cqx build
-          name: build projet
+      - run: yarn add cqx --dev
+      - run: yarn install
+      - run: prisma generate
+      - run: npx cqx build
+      - run: zip -r build.zip build
+      - store_artifacts:
+          path: build.zip
+
       - persist_to_workspace:
-          root: build
+          root: ~/project
           paths:
-            - .
+            - ./build/
+            - Dockerfile
+            - .Dockerignore
 
   push:
     machine: true
     steps:
-      - checkout
+      - attach_workspace:
+          at: ~/project
+      - run: ls
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
       - run: docker build -t dykoffi/serv:2.0.0 .
       - run: docker push dykoffi/serv:2.0.0
