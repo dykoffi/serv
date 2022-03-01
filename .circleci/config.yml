@@ -16,6 +16,7 @@ jobs:
     steps:
       - checkout
       - run: yarn add cqx --dev
+      - run: yarn add prisma-json-schema-generator --dev
       - run: yarn install
       - run: prisma generate
       - run: npx cqx build
