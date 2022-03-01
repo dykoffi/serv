@@ -17,7 +17,7 @@ jobs:
       - checkout
       - run: yarn add cqx --dev
       - run: yarn install
-      - run: prisma generate
+      - run: npx prisma generate
       - run: npx cqx build
       - run: zip -r build.zip build
       - store_artifacts:
