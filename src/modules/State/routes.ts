@@ -1,26 +1,26 @@
 import express = require("express");
 
-import PTypes = require("../../db/types")
+import PTypes = require("../../configs/db/types")
 
 const router: express.Router = require("express").Router();
 
-import maisonService = require("./service")
+import stateService = require("./service")
 
-const maison = new maisonService();
+const state = new stateService();
 
 type PError = PTypes.PrismaClientKnownRequestError | Error
 
 router
 
     /**
-     * @descr Create new maison
-     * @route POST /maison
+     * @descr Create new state
+     * @route POST /state
      * @access public
      */
 
     .post("/", async (req: express.Request, res: express.Response) => {
 
-        maison.addOne(req.body)
+        state.addOne(req.body)
             .then((data) => { res.status(201).json(data); })
             .catch((error: Error) => {
                 console.error(error);
@@ -30,14 +30,14 @@ router
     })
 
     /**
-    * @descr get all maison
-    * @route GET /maison
+    * @descr get all state
+    * @route GET /state
     * @access public
     */
 
     .get("/", async (req: express.Request, res: express.Response) => {
 
-        maison.getAll({ where: req.query, orderBy: { id_: "asc" } })
+        state.getAll({ where: req.query, orderBy: { id_: "asc" } })
             .then((data) => { res.json(data); })
             .catch((error: Error) => {
                 console.error(error);
@@ -47,14 +47,14 @@ router
     })
 
     /**
-    * @descr Show specify maison identified by id
-    * @route GET /maison/id
+    * @descr Show specify state identified by id
+    * @route GET /state/id
     * @access public
     */
 
     .get("/:id", async (req: express.Request, res: express.Response) => {
 
-        maison.getById(parseInt(req.params.id))
+        state.getById(parseInt(req.params.id))
             .then((data) => {
                 res.status(data === null ? 404 : 200).json(data);
             })
@@ -66,16 +66,16 @@ router
     })
 
     /**
-    * @descr Modify specify maison identified by id
-    * @route PUT /maison/id
+    * @descr Modify specify state identified by id
+    * @route PUT /state/id
     * @access public
     */
 
     .put("/:id", async (req: express.Request, res: express.Response) => {
 
-        maison.updateById(parseInt(req.params.id), req.body)
+        state.updateById(parseInt(req.params.id), req.body)
             .then(() => {
-                res.status(201).json({ message: "object maison updated successfully" });
+                res.status(201).json({ message: "object state updated successfully" });
             })
             .catch((error: PError) => {
 
@@ -91,16 +91,16 @@ router
     })
 
     /**
-    * @descr Delete specify maison identified by id
-    * @route DELETE /maison/id
+    * @descr Delete specify state identified by id
+    * @route DELETE /state/id
     * @access public
     */
 
     .delete("/:id", async (req: express.Request, res: express.Response) => {
 
-        maison.deleteById(parseInt(req.params.id))
+        state.deleteById(parseInt(req.params.id))
             .then(() => {
-                res.status(201).json({ message: "object maison deleted successfully" });
+                res.status(201).json({ message: "object state deleted successfully" });
             })
             .catch((error: PError) => {
                 console.error(error);

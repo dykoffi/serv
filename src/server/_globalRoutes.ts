@@ -4,12 +4,12 @@ const app = require("./app");
 const createError = require("http-errors");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("../docs/_index");
-const prometheus = require("../middlewares/prometheus")
+const prometheus = require("../utils/prometheus")
 
 
-app.use("/Maison", require("../services/Maison/routes")); 
-app.use("/State", require("../services/State/routes")); 
-app.use("/", require("../services/Home/routes"));
+app.use("/Maison", require("../modules/Maison/routes")); 
+app.use("/State", require("../modules/State/routes")); 
+app.use("/", require("../modules/Home/routes"));
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use("/metrics", async (

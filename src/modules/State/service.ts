@@ -1,6 +1,6 @@
-const { state } = require("../../db");
+const { state } = require("../../configs/db");
 
-import PTypes = require("../../db/types")
+import PTypes = require("../../configs/db/types")
 
 class stateService {
 

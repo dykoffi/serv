@@ -1,6 +1,6 @@
 import express = require("express")
 
-const model = require("../db");
+const model = require("../configs/db");
 const onFinished = require("on-finished");
 
 module.exports = function () {

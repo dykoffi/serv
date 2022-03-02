@@ -1,5 +1,0 @@
-scenarios:
-  - name: "Test"
-    flow:
-      - get:
-          url: "/"

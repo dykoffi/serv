@@ -3,7 +3,7 @@
 const http = require("http");
 const path = require("path");
 const allApp = require("./_globalRoutes");
-const db = require("../db");
+const db = require("../configs/db");
 const server = http.createServer(allApp);
 
 require("dotenv").config({ path: path.resolve(process.cwd(), "info.env") });

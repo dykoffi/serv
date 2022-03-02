@@ -1,6 +1,6 @@
-const { maison } = require("../../db");
+const { maison } = require("../../configs/db");
 
-import PTypes = require("../../db/types")
+import PTypes = require("../../configs/db/types")
 
 class maisonService {
 
